@@ -1,3 +1,4 @@
+# Controller for items (goods)
 class ItemsController < ApplicationController
   def index
     @items = Item.all
@@ -18,6 +19,7 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:item).permit(:title, :description, :image)
   end

@@ -8,7 +8,6 @@ class CartController < ApplicationController
   end
 
   def update
-    puts "Id: ", params[:id]
     @cart = Cart.new(session)
 
     item = @cart.item_for params[:id]

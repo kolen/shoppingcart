@@ -1,47 +1,34 @@
 class CartController < ApplicationController
 
+  CartItem = Struct.new("CartItem", :item, :quantity)
+
   # Cart stored in session. Keeps item ids with corresponding counts
   class Cart
     def initialize(session)
       @session = session
-      @cart = @session[:cart] || []
+      @cart = @session[:cart] || Hash.new(0)
     end
 
     def items
-      Item.find(@cart.map(&:first))
-    end
-
-    def increment(id)
-      modify id { |i| i+1 }
-    end
-
-    def decrement(id)
-      modify id { |i| i-1 }
-    end
-
-    def set(id, value)
-      modify id { |i| value }
+      Item.find(@cart.keys).map do |item|
+        CartItem.new(item, @cart[item.id])
+      end
     end
 
     def save
       @session[:cart] = @cart
     end
 
-    private
+    def [](key)
+      @cart[key]
+    end
 
-    # Modifies count of item with id with modifier. Creates new item with 0
-    # count before passing it to modifier if item with this id is not yet in
-    # cart
-    def modify(id, &modifier)
-      index = @cart.find_index |i| i.first == id
-      if index.nil?
-        # Create new item and put to the end of cart list
-        @cart << [id, 0]
-        index = @cart.length - 1
+    def []=(key, value)
+      if value <= 0
+        @cart.delete key
+      else
+        @cart[key] = value
       end
-
-      # Update item in card with count passed through modifier
-      @cart[index] = [id, modifier.call(@cart[index][1])]
     end
   end
 end

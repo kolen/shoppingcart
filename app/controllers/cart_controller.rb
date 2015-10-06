@@ -17,6 +17,7 @@ class CartController < ApplicationController
       @cart.save
       redirect_to action: 'index'
     else
+      @failed_item = item
       render 'index'
     end
   end

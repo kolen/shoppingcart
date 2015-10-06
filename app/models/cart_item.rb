@@ -23,6 +23,6 @@ class CartItem
   end
 
   def save
-    @cart[@item.id] = @quantity.to_i
+    valid? && @cart[@item.id] = @quantity.to_i
   end
 end

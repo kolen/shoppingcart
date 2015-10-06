@@ -56,5 +56,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :items #:only => [:index, :show]
+  resources :items
+  resources :cart_items, path: 'cart', only: [:index, :update], controller: :cart
 end

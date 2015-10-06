@@ -5,8 +5,8 @@ class CartControllerTest < ActionController::TestCase
     cart = CartController::Cart.new({:cart => {items(:tea1).id => 1,
                                                items(:tea2).id => 3}})
     cart[items(:tea1).id] += 1
-    assert_equal cart.items.map(&:item), [items(:tea1), items(:tea2)]
-    assert_equal cart.items.map(&:quantity), [2, 3]
+    assert_equal [items(:tea1), items(:tea2)], cart.items.map(&:item)
+    assert_equal [2, 3], cart.items.map(&:quantity)
   end
 
   test "Save works" do
@@ -15,12 +15,12 @@ class CartControllerTest < ActionController::TestCase
     cart[items(:tea1).id] += 3
     cart.save
 
-    assert_equal fake_session[:cart], {items(:tea1).id => 5}
+    assert_equal({items(:tea1).id => 5}, fake_session[:cart])
   end
 
   test "Treats assigning zero as removal" do
     cart = CartController::Cart.new({:cart => {items(:tea2).id => 1}})
-    cart[items(:tea1).id] -= 1
-    assert_equal cart.items, []
+    cart[items(:tea2).id] -= 1
+    assert_equal [], cart.items
   end
 end

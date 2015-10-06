@@ -1,0 +1,26 @@
+<ol>
+    <% @cart.items.each do |cartitem| %>
+        <li>
+            <%= cartitem.item.title %>
+            <%= cartitem.quantity %>
+
+            <%= form_for cartitem, url: cart_item_path(cartitem.item.id),
+                html: {method: "put"} do |f| %>
+                <%= f.text_field :quantity %>
+                <%= f.submit "Update quantity" %>
+            <% end %>
+
+            <%= form_for cartitem, url: cart_item_path(cartitem.item.id),
+                html: {method: "put"} do |f| %>
+                <%= f.hidden_field :quantity, value: cartitem.quantity + 1 %>
+                <%= f.submit "+" %>
+            <% end %>
+
+            <%= form_for cartitem, url: cart_item_path(cartitem.item.id),
+                html: {method: "put"} do |f| %>
+                <%= f.hidden_field :quantity, value: cartitem.quantity - 1 %>
+                <%= f.submit "-" %>
+            <% end %>
+        </li>
+    <% end %>
+</ol>

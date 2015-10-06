@@ -20,4 +20,14 @@ class CartController < ApplicationController
       render 'index'
     end
   end
+
+  def add
+    @cart = Cart.new(session)
+    item = @cart.item_for params[:id]
+    item.quantity += 1
+    item.save
+    @cart.save
+
+    redirect_to :back
+  end
 end

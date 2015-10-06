@@ -1,7 +1,12 @@
 <% @items.each do |item| %>
-    <div>
+    <div class="item">
         <div><strong><%= link_to item.title, item_path(item) %></strong></div>
         <div><%= item.description %></div>
+        <div>
+            <%= form_tag(add_cart_item_url(item.id)) do %>
+                <%= submit_tag "Add to cart" %>
+            <% end %>
+        </div>
     </div>
 <% end %>
 

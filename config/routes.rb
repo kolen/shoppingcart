@@ -57,5 +57,10 @@ Rails.application.routes.draw do
   #   end
 
   resources :items
-  resources :cart_items, path: 'cart', only: [:index, :update], controller: :cart
+  resources :cart_items, path: 'cart', only: [:index, :update],
+            controller: :cart do
+    member do
+      post 'add'
+    end
+  end
 end

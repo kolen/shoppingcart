@@ -28,6 +28,6 @@ class CartController < ApplicationController
     item.save
     @cart.save
 
-    redirect_to :back
+    redirect_to :back, notice: "Item added to cart"
   end
 end

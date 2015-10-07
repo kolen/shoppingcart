@@ -8,7 +8,7 @@
       <th>Description</th>
       <th>Applies to</th>
       <th>Discount</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -33,7 +33,6 @@
           <% end %>
         </td>
 
-        <td><%= link_to 'Show', discount_rule %></td>
         <td><%= link_to 'Edit', edit_discount_rule_path(discount_rule) %></td>
         <td><%= link_to 'Destroy', discount_rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  item_id: 
+  tag_id: 
+  price_discount: 9.99
+  percentage_discount: 9.99
+
+two:
+  description: MyText
+  item_id: 
+  tag_id: 
+  price_discount: 9.99
+  percentage_discount: 9.99

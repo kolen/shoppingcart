@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :discount_rules
   resources :tags
   #get '/index'
 

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @discount_rule.description %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @discount_rule.item %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @discount_rule.tag %>
+</p>
+
+<p>
+  <strong>Price discount:</strong>
+  <%= @discount_rule.price_discount %>
+</p>
+
+<p>
+  <strong>Percentage discount:</strong>
+  <%= @discount_rule.percentage_discount %>
+</p>
+
+<%= link_to 'Edit', edit_discount_rule_path(@discount_rule) %> |
+<%= link_to 'Back', discount_rules_path %>

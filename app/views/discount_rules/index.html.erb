@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Discount Rules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Applies to</th>
+      <th>Discount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discount_rules.each do |discount_rule| %>
+      <tr>
+        <td><%= discount_rule.description %></td>
+
+        <td>
+          <% if discount_rule.item_based? %>
+            Item: <%= discount_rule.item.title %>
+          <% else %>
+            Tag: <%= discount_rule.tag.title %>
+          <% end %>
+        </td>
+
+        <td>
+          <% if discount_rule.price_based? %>
+            Price: <%= discount_rule.price_discount %> Грн
+          <% else %>
+            Percentage: <%= discount_rule.percentage_discount %>%
+          <% end %>
+        </td>
+
+        <td><%= link_to 'Show', discount_rule %></td>
+        <td><%= link_to 'Edit', edit_discount_rule_path(discount_rule) %></td>
+        <td><%= link_to 'Destroy', discount_rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discount rule', new_discount_rule_path %>

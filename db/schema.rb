@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007160655) do
+ActiveRecord::Schema.define(version: 20151007210154) do
 
   create_table "discount_rules", force: :cascade do |t|
-    t.text     "description",                                  null: false
+    t.text     "description",                                                  null: false
     t.integer  "item_id"
     t.integer  "tag_id"
     t.decimal  "price_discount",      precision: 10, scale: 2
     t.decimal  "percentage_discount", precision: 4,  scale: 2
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.integer  "quantity",                                     default: 1,     null: false
+    t.boolean  "repeating",                                    default: false, null: false
   end
 
   add_index "discount_rules", ["item_id"], name: "index_discount_rules_on_item_id"

@@ -8,6 +8,8 @@
       <th>Description</th>
       <th>Applies to</th>
       <th>Discount</th>
+      <th>Quantity</th>
+      <th>Repeating?</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -32,6 +34,9 @@
             Percentage: <%= discount_rule.percentage_discount %>%
           <% end %>
         </td>
+
+        <td><%= discount_rule.quantity %></td>
+        <td><%= discount_rule.repeating ? "✓" : " " %></td>
 
         <td><%= link_to 'Edit', edit_discount_rule_path(discount_rule) %></td>
         <td><%= link_to 'Destroy', discount_rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>

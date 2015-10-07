@@ -8,6 +8,8 @@ class DiscountRule < ActiveRecord::Base
   validates :price_discount, presence: true, unless: :percentage_based?
   validates :percentage_discount, presence: true, unless: :price_based?
   validate :cannot_be_both_price_and_percentage_discount
+  validates :quantity, presence: true, numericality: true,
+            inclusion: { in: 1..100 }
 
   def item_based?
     item.present?

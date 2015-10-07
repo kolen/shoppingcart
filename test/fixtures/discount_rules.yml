@@ -6,6 +6,8 @@ one:
   tag_id: NULL
   price_discount: 9.99
   percentage_discount: NULL
+  quantity: 2
+  repeating: false
 
 two:
   description: MyText
@@ -13,3 +15,6 @@ two:
   tag: large_leaf
   price_discount: NULL
   percentage_discount: 9.99
+  quantity: 4
+  repeating: true
+  

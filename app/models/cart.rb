@@ -16,7 +16,7 @@ class Cart
 
   # Returns list of CartItem contained in cart
   def items
-    Item.find(@cart.keys).map do |item|
+    Item.includes(:tags).find(@cart.keys).map do |item|
       CartItem.new(self, item, @cart[item.id])
     end
   end

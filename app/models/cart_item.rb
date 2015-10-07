@@ -18,10 +18,13 @@ class CartItem
     @item.id
   end
 
+  # Update with multiple values (activerecord-like).
+  # Actually supports updating only quantity
   def update(values)
     self.quantity=(values[:quantity])
   end
 
+  # Save quantity back to cart (activerecord-like)
   def save
     valid? && @cart[@item.id] = @quantity.to_i
   end

@@ -38,4 +38,12 @@ class DiscountRule < ActiveRecord::Base
       errors[:base] << "Rule can't contain both price and percentage discount"
     end
   end
+
+  def item_matches?(checked_item)
+    if item_based?
+      item == checked_item
+    else
+      checked_item.tags.include? tag
+    end
+  end
 end

@@ -5,9 +5,11 @@ tea1:
   description: Стандартный терпкий чай с советским ароматом
   price: 16.94
   image:
+#  tags: tea
 
 tea2:
   title: Чай \"Принцесса Гита\"
   description: Королева меркуриала
   price: 20.00
   image:
+#  tags: tea, large_leaf

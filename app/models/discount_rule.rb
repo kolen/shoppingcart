@@ -39,11 +39,32 @@ class DiscountRule < ActiveRecord::Base
     end
   end
 
+  # Returns what number of times this discount rule applies to items in cart
+  # (repeating discounts can apply multiple times)
+  def num_times_applies(cart_items)
+    num_items_matched = cart_items.map do |cart_item|
+      item_matches?(cart_item.item) ? cart_item.quantity : 0
+    end.inject(:+)
+
+    num_discounts = num_items_matched / quantity
+
+    if repeating?
+      num_discounts
+    else
+      if num_discounts > 0 then 1 else 0 end
+    end
+  end
+
+  # Returns true if item matches this discount rule
   def item_matches?(checked_item)
     if item_based?
       item == checked_item
     else
       checked_item.tags.include? tag
     end
+  end
+
+  def repeating?
+    repeating
   end
 end

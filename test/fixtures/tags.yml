@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+teas:
+  title: Чай
+
+large_leaf:
+  title: Крупнолистовой
+
 one:
-  title: MyString
+  title: One
 
 two:
-  title: MyString
+  title: Two

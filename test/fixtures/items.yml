@@ -3,19 +3,11 @@
 tea1:
   title: Индийский чай \"со слоном\"
   description: Стандартный терпкий чай с советским ароматом
+  price: 16.94
   image:
 
 tea2:
   title: Чай \"Принцесса Гита\"
   description: Королева меркуриала
+  price: 20.00
   image:
-
-one:
-  title: MyString
-  description: MyText
-  image: MyString
-
-two:
-  title: MyString
-  description: MyText
-  image: MyString

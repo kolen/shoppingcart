@@ -2,14 +2,14 @@
 
 one:
   description: MyText
-  item_id: 
-  tag_id: 
+  item: tea1
+  tag_id: NULL
   price_discount: 9.99
-  percentage_discount: 9.99
+  percentage_discount: NULL
 
 two:
   description: MyText
-  item_id: 
-  tag_id: 
-  price_discount: 9.99
+  item_id: NULL
+  tag: large_leaf
+  price_discount: NULL
   percentage_discount: 9.99

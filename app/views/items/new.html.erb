@@ -10,8 +10,18 @@
     </p>
 
     <p>
+        <%= f.label :price %>
+        <%= f.text_field :price %>
+    </p>
+
+    <p>
         <%= f.label :image %>
         <%= f.text_field :image %>
+    </p>
+
+    <p>
+        <%= f.label :tags %>
+        <%= f.collection_check_boxes :tags, Tag.all, :id, :title  %>
     </p>
 
     <p>

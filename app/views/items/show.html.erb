@@ -1,6 +1,10 @@
 <h1><%= @item.title %></h1>
 <p><%= @item.description %></p>
 
-<% if @item.image %>
+<% if @item.image != "" %>
     <img src="<%= @item.image %>" >
+<% end %>
+
+<% @item.tags.each do |tag| %>
+    <%= tag.title %>
 <% end %>

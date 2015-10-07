@@ -13,6 +13,11 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    params[:item][:tags].each do |tag_id|
+      if tag_id.to_i != 0
+        @item.tags << Tag.find(tag_id.to_i)
+      end
+    end
 
     @item.save
     redirect_to @item
@@ -21,6 +26,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :image)
+    params.require(:item).permit(:title, :description, :price, :image, :tags)
   end
 end

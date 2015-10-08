@@ -28,4 +28,9 @@ class CartItem
   def save
     valid? && @cart[@item.id] = @quantity.to_i
   end
+
+  # Price of whole stack of items
+  def price
+    item.price * quantity
+  end
 end

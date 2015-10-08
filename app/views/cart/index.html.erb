@@ -52,12 +52,21 @@
             <%= f.submit "-" %>
           <% end %>
         </td>
+
+        <td>
+          <%= form_for cartitem,
+              url: cart_item_path(cartitem.item.id),
+              html: {method: "put"} do |f| %>
+            <%= f.hidden_field :quantity, value: 0 %>
+            <%= f.submit "Remove" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
 
     <% if @price_summary.active_discounts.any? %>
       <tr>
-        <td colspan="6">Discounts:</td>
+        <td colspan="7">Discounts:</td>
       </tr>
     <% end %>
 
@@ -70,14 +79,14 @@
         <td>
           -<%= discount.amount %> ₴
         </td>
-        <td colspan="3">
+        <td colspan="4">
       </tr>
     <% end %>
 
     <tr>
       <td colspan="2">Total</td>
       <td><%= @price_summary.total_price %> ₴</td>
-      <td colspan="3"></td>
+      <td colspan="4"></td>
     </tr>
   </tbody>
 </table>

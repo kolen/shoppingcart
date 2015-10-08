@@ -6,7 +6,9 @@ class PriceSummaryTest < ActiveSupport::TestCase
                   CartItem.new(nil, items(:tea2), 5)]
     price_summary = PriceSummary.new(cart_items)
 
-    assert_equal 16.94 + 20.00, price_summary.sum_price
-    assert_equal (16.94 + 20.00) - 9.99, price_summary.total_price
+    sum = 16.94 * 4 + 20.00 * 5
+
+    assert_equal sum, price_summary.sum_price
+    assert_equal sum - 9.99, price_summary.total_price
   end
 end

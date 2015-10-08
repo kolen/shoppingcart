@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 # Calculates discounts and resulting price of order
 class PriceSummary
   DiscountInfo = Struct.new(:text, :times, :amount_or_percent, :amount)
@@ -20,10 +22,10 @@ class PriceSummary
         amount = if rule.price_based?
                    rule.price_discount
                  else
+                   BigDecimal.mode(BigDecimal::ROUND_MODE, :up)
                    BigDecimal.new(rule.percentage_discount)
-                     .mult(BigDecimal.new("0.01"))
-                     .mult(@sum_price)
-                     .round(2, BigDecimal::ROUND_FLOOR)
+                     .mult(BigDecimal.new("0.01"), 2)
+                     .mult(@sum_price, 2)
                  end
         [DiscountInfo.new(rule.description, num_times_applies,
                           amount_or_percent, amount)]

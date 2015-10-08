@@ -18,6 +18,15 @@
         </td>
 
         <td>
+          <%= cartitem.quantity %>
+        </td>
+
+        <%# TODO: align and format %>
+        <td>
+          <%= cartitem.item.price %> ₴
+        </td>
+
+        <td>
           <%= form_for cartitem,
               url: cart_item_path(cartitem.item.id),
               html: {method: "put"} do |f| %>
@@ -46,5 +55,29 @@
       </tr>
     <% end %>
 
+    <% if @price_summary.active_discounts.any? %>
+      <tr>
+        <td colspan="6">Discounts:</td>
+      </tr>
+    <% end %>
+
+    <% @price_summary.active_discounts.each do |discount| %>
+      <tr>
+        <td colspan="2">
+          <%= discount.text %>
+          <%= if discount.times > 1 then discount.times + 'x' else '' end %>
+        </td>
+        <td>
+          -<%= discount.amount %> ₴
+        </td>
+        <td colspan="3">
+      </tr>
+    <% end %>
+
+    <tr>
+      <td colspan="2">Total</td>
+      <td><%= @price_summary.total_price %> ₴</td>
+      <td colspan="3"></td>
+    </tr>
   </tbody>
 </table>

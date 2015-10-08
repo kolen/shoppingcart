@@ -1,10 +1,7 @@
 class CartController < ApplicationController
   def index
     @cart = Cart.new(session)
-    #@cart[1] = 3
-    #@cart.save
-    puts "Session cart", session[:cart]
-    #session.delete :cart
+    @price_summary = PriceSummary.new(@cart.items)
   end
 
   def update

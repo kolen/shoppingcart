@@ -76,7 +76,9 @@
       <tr>
         <td colspan="2">
           <%= discount.text %>
-          <%= if discount.times > 1 then discount.times + 'x' else '' end %>
+          <strong>
+            <%= if discount.times > 1 then discount.times.to_s + 'x' else '' end %>
+          </strong>
         </td>
         <td>
           -<%= discount.amount %> ₴

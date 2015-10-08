@@ -11,7 +11,9 @@ class CartItem
   validates :quantity, numericality: true
 
   def initialize(cart, item, quantity)
-    @cart, @item, @quantity = cart, item, quantity
+    @cart = cart
+    @item = item
+    @quantity = quantity
   end
 
   def id

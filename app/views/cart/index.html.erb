@@ -1,49 +1,50 @@
 <table>
-    <tbody>
-        <% @cart.items.each do |cartitem| %>
-            <%# Somewhat hacky. If there's @failed_item, show error for it %>
-            <% if @failed_item && cartitem.item.id == @failed_item.item.id %>
-                <tr>
-                    <td colspan="4">
-                        <% @failed_item.errors.full_messages.each do |msg| %>
-                            <li><%= msg %></li>
-                        <% end %>
-                    </td>
-                </tr>
+  <tbody>
+    <% @cart.items.each do |cartitem| %>
+      <%# Somewhat hacky. If there's @failed_item, show error for it %>
+      <% if @failed_item && cartitem.item.id == @failed_item.item.id %>
+        <tr>
+          <td colspan="4">
+            <% @failed_item.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
             <% end %>
+          </td>
+        </tr>
+      <% end %>
 
-            <tr>
-                <td>
-                    <%= cartitem.item.title %>
-                </td>
+      <tr>
+        <td>
+          <%= cartitem.item.title %>
+        </td>
 
-                <td>
-                    <%= form_for cartitem,
-                        url: cart_item_path(cartitem.item.id),
-                        html: {method: "put"} do |f| %>
-                        <%= f.text_field :quantity %>
-                        <%= f.submit "Update quantity" %>
-                    <% end %>
-                </td>
+        <td>
+          <%= form_for cartitem,
+              url: cart_item_path(cartitem.item.id),
+              html: {method: "put"} do |f| %>
+            <%= f.text_field :quantity %>
+            <%= f.submit "Update quantity" %>
+          <% end %>
+        </td>
 
-                <td>
-                    <%= form_for cartitem,
-                        url: cart_item_path(cartitem.item.id),
-                        html: {method: "put"} do |f| %>
-                        <%= f.hidden_field :quantity, value: cartitem.quantity + 1 %>
-                        <%= f.submit "+" %>
-                    <% end %>
-                </td>
+        <td>
+          <%= form_for cartitem,
+              url: cart_item_path(cartitem.item.id),
+              html: {method: "put"} do |f| %>
+            <%= f.hidden_field :quantity, value: cartitem.quantity + 1 %>
+            <%= f.submit "+" %>
+          <% end %>
+        </td>
 
-                <td>
-                    <%= form_for cartitem,
-                        url: cart_item_path(cartitem.item.id),
-                        html: {method: "put"} do |f| %>
-                        <%= f.hidden_field :quantity, value: cartitem.quantity - 1 %>
-                        <%= f.submit "-" %>
-                    <% end %>
-                </td>
-            </tr>
-        <% end %>
-    </tbody>
+        <td>
+          <%= form_for cartitem,
+              url: cart_item_path(cartitem.item.id),
+              html: {method: "put"} do |f| %>
+            <%= f.hidden_field :quantity, value: cartitem.quantity - 1 %>
+            <%= f.submit "-" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
 </table>

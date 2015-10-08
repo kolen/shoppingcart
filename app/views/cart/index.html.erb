@@ -1,4 +1,13 @@
-<table>
+<h1>Cart</h1>
+<table class="u-full-width cart">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
   <tbody>
     <% @cart.items.each do |cartitem| %>
       <%# Somewhat hacky. If there's @failed_item, show error for it %>
@@ -17,25 +26,20 @@
           <%= cartitem.item.title %>
         </td>
 
-        <td>
-          <%= cartitem.quantity %>
+        <td class="price">
+          <%= '%0.2f' % cartitem.price %> ₴
         </td>
 
-        <%# TODO: align and format %>
-        <td>
-          <%= cartitem.price %> ₴
-        </td>
-
-        <td>
+        <td class="button-cell">
           <%= form_for cartitem,
               url: cart_item_path(cartitem.item.id),
               html: {method: "put"} do |f| %>
-            <%= f.text_field :quantity %>
-            <%= f.submit "Update quantity" %>
+            <%= f.text_field :quantity, class: :quantity %>
+            <%= f.submit "Set qty", class: :quantity_button %>
           <% end %>
         </td>
 
-        <td>
+        <td class="button-cell">
           <%= form_for cartitem,
               url: cart_item_path(cartitem.item.id),
               html: {method: "put"} do |f| %>
@@ -44,7 +48,7 @@
           <% end %>
         </td>
 
-        <td>
+        <td class="button-cell">
           <% if cartitem.quantity > 1 %>
             <%= form_for cartitem,
                 url: cart_item_path(cartitem.item.id),
@@ -55,7 +59,7 @@
           <% end %>
         </td>
 
-        <td>
+        <td class="button-cell">
           <%= form_for cartitem,
               url: cart_item_path(cartitem.item.id),
               html: {method: "put"} do |f| %>
@@ -66,30 +70,36 @@
       </tr>
     <% end %>
 
+    <tr class="subtotal">
+      <td>Subtotal</td>
+      <td class="price"><%= '%0.2f' % @price_summary.sum_price %> ₴</td>
+      <td colspan="4"></td>
+    </tr>
+
     <% if @price_summary.active_discounts.any? %>
       <tr>
-        <td colspan="7">Discounts:</td>
+        <td colspan="6" class="discounts-separator">Discounts:</td>
       </tr>
     <% end %>
 
     <% @price_summary.active_discounts.each do |discount| %>
       <tr>
-        <td colspan="2">
+        <td>
           <%= discount.text %>
           <strong>
             <%= if discount.times > 1 then discount.times.to_s + 'x' else '' end %>
           </strong>
         </td>
-        <td>
-          -<%= discount.amount %> ₴
+        <td class="price">
+          -<%= '%0.2f' % discount.amount %> ₴
         </td>
         <td colspan="4">
       </tr>
     <% end %>
 
-    <tr>
-      <td colspan="2">Total</td>
-      <td><%= @price_summary.total_price %> ₴</td>
+    <tr class="total">
+      <td>Total</td>
+      <td class="price"><%= '%0.2f' % @price_summary.total_price %> ₴</td>
       <td colspan="4"></td>
     </tr>
   </tbody>

@@ -45,11 +45,13 @@
         </td>
 
         <td>
-          <%= form_for cartitem,
-              url: cart_item_path(cartitem.item.id),
-              html: {method: "put"} do |f| %>
-            <%= f.hidden_field :quantity, value: cartitem.quantity - 1 %>
-            <%= f.submit "-" %>
+          <% if cartitem.quantity > 1 %>
+            <%= form_for cartitem,
+                url: cart_item_path(cartitem.item.id),
+                html: {method: "put"} do |f| %>
+              <%= f.hidden_field :quantity, value: cartitem.quantity - 1 %>
+              <%= f.submit "-" %>
+            <% end %>
           <% end %>
         </td>
 

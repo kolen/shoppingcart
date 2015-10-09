@@ -45,4 +45,8 @@ class Cart
       @cart[key] = value
     end
   end
+
+  def count
+    @cart.values.inject(:+)
+  end
 end

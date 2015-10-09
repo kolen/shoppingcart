@@ -1,9 +1,18 @@
+<h1>Shop</h1>
+
+<div class="u-full-width">
+  <%= link_to 'View your cart', cart_items_path %>
+  (<%= @cart.count %> items)
+</div>
+
 <% @items.each do |item| %>
     <div class="item">
+        <div class="title"><%= item.title %></div>
         <% if item.image != "" %>
-            <img src="<%= item.image %>">
+          <img src="<%= item.image %>">
+        <% else %>
+          <img src="https://placekitten.com/g/160/160">
         <% end %>
-        <div><strong><%= link_to item.title, item_path(item) %></strong></div>
         <div><%= item.description %></div>
         <div>
             <%= form_tag(add_cart_item_url(item.id)) do %>
@@ -13,4 +22,8 @@
     </div>
 <% end %>
 
-<%= link_to 'Create', new_item_path %>
+<div class="row">
+  <div class="twelve columns">
+    <%= link_to 'Create', new_item_path %>
+  </div>
+</div>

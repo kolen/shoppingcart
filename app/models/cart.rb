@@ -46,6 +46,8 @@ class Cart
     end
   end
 
+  # Returns count of items in the cart (counting quantities of the same item
+  # too)
   def count
     @cart.values.inject(:+)
   end

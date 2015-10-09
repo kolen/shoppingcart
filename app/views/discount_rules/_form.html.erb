@@ -17,11 +17,13 @@
   </div>
   <div class="field">
     <%= f.label :item_id %><br>
-    <%= f.text_field :item_id %>
+    <%= f.collection_select :item_id, Item.all, :id, :title,
+                            include_blank: '---' %>
   </div>
   <div class="field">
     <%= f.label :tag_id %><br>
-    <%= f.text_field :tag_id %>
+    <%= f.collection_select :tag_id, Tag.all, :id, :title,
+                            include_blank: '---' %>
   </div>
   <div class="field">
     <%= f.label :price_discount %><br>

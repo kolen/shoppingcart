@@ -4,10 +4,10 @@ class Cart
     @session = session
 
     # Session serialization converts hash keys to strings so convert back
-    @cart = if @session[:cart] then
-              Hash[@session[:cart].map {|(k, v)| [k.to_i, v.to_i]}]
+    @cart = if @session[:cart]
+              Hash[@session[:cart].map { |(k, v)| [k.to_i, v.to_i] }]
             else
-              Hash.new
+              {}
             end
 
     # Always set default (may deserialize from session without default?)

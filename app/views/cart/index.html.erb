@@ -70,6 +70,10 @@
       </tr>
     <% end %>
 
+    <%# If there's failed item, that means we are rendering page with errors,
+        so don't calculate summary, it will not work on icomplete data %>
+    <% unless @failed_item %>
+
     <tr class="subtotal">
       <td>Subtotal</td>
       <td class="price"><%= '%0.2f' % @price_summary.sum_price %> ₴</td>
@@ -102,5 +106,7 @@
       <td class="price"><%= '%0.2f' % @price_summary.total_price %> ₴</td>
       <td colspan="4"></td>
     </tr>
+
+    <% end %>
   </tbody>
 </table>

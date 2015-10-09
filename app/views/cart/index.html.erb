@@ -13,7 +13,7 @@
       <%# Somewhat hacky. If there's @failed_item, show error for it %>
       <% if @failed_item && cartitem.item.id == @failed_item.item.id %>
         <tr>
-          <td colspan="4">
+          <td colspan="6">
             <% @failed_item.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>

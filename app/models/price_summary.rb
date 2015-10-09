@@ -32,7 +32,7 @@ class PriceSummary
 
   # Returns price of sum of all items' prices (before discounts)
   def sum_price
-    @sum_price ||= @cart_items.map { |ci| ci.price }.inject(:+)
+    @sum_price ||= @cart_items.map(&:price).inject(:+)
   end
 
   private

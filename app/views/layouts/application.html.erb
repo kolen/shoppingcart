@@ -9,8 +9,8 @@
 <body>
   <div class="container">
     <% flash.each do |name, msg| -%>
-      <div class="row">
-        <%= content_tag :div, msg, class: name %>
+      <div class="row flash-message">
+        <%= content_tag :div, msg, class: [name, :twelve, :columns] %>
       </div>
     <% end -%>
     <%= yield %>
